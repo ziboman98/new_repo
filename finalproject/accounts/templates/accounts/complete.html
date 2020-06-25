@@ -1,0 +1,26 @@
+{% extends "accounts/main.html" %}
+{% block content %}
+    <h1>Complete Semesters</h1>
+
+    <p>Student ID: {{student.student_id}}}</p>
+<div class="course_complete">
+
+    <h5>Completed courses</h5>
+{% for course in courses_complete %}
+    <ul>
+        <li>{{course.course_code}}</li>
+    </ul>
+{% endfor %}
+</div>
+
+<div class="course_incomplete">
+
+    <h5>failed courses</h5>
+{% for course in courses_incomplete %}
+    <ul>
+        <li>{{course.course_code}}</li>
+    </ul>
+{% endfor %}
+</div>
+
+{% endblock  %}

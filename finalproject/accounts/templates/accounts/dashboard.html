@@ -1,5 +1,28 @@
 {%  extends 'accounts/main.html' %}
 
 {% block content %}
-    <h3>This is it</h3>
+    <!--Jumbotron start-->
+    <div class="jumbotron">
+          <h1 class="display-4">Hello, {{request.user}}!</h1>
+          <p class="lead">Welcome to the Returning Students Credits Checking System. This student is geared towards helping
+              returning students with all their inquiries regarding their academic progress.</p>
+          <hr class="my-1">
+    </div>
+    <!--Jumbotron end-->
+
+    <div class="card" style="width: 18rem;">
+        <!-- Card-body div start-->
+        <div class="card-body">
+            <h5 class="card-title">Menu</h5>
+            <div class="list-group">
+                  <a href="{% url 'graduation' %}" class="list-group-item list-group-item-action">Check graduation eligibility</a>
+                  <a href="{% url 'incompleteSemesters' %}" class="list-group-item list-group-item-action">View incomplete courses</a>
+                  <a href="{% url 'completeSemesters' %}" class="list-group-item list-group-item-action">View completed courses</a>
+                  <a href="{% url 'semester' %}" class="list-group-item list-group-item-action">View semesters left till completion</a>
+            </div>
+
+        </div>
+        <!-- Card-body div end-->
+
+    </div>
 {% endblock %}
