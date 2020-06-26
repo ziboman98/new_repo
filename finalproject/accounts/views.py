@@ -12,6 +12,7 @@ from .decorators import unauthenticated_user, allowed_users, admin_only
 from django.template.loader import render_to_string
 from django.core.files.storage import FileSystemStorage
 from weasyprint import HTML
+import math
 import tempfile
 
 # Create your views here.
@@ -77,9 +78,41 @@ def graduation(request):
     """This method checks whether the student fulfills all the requirements for graduation"""
     student = get_object_or_404(Student, user=request.user)
     courses_complete = student.usercourses.all().filter(course_grade__gte=50)
-    programme_credits = student.programme.overall_program_credits
-    # student_cgpa = student.StudentCGPA.CGPA , 'student_cgpa': student_cgpa
-    
+    arr = []
+    for i in courses_complete:
+        for j in Course.objects.all():
+            if i.course_code == j:
+                arr.append(j)
+    total_credits = 0
+    for i in arr:
+        total_credits += i.credits
+
+    programme_ = student.programme
+    coursesInMyProgramme = Course.objects.filter(programme__plan_code=programme_.plan_code)
+
+    f = set()
+
+    for i in coursesInMyProgramme:
+        f.add(i)
+    for i in courses_complete:
+        f.add(i)
+
+    # len on f should be equal to the len of courses_complete to graduate
+
+
+    print(programme_)
+    print(coursesInMyProgramme)
+
+    if len(f) < len(courses_complete) and total_credits > 120:
+        print("graduate!")
+    else:
+        print("no")
+
+
+
+
+    # get all the courses programme requires
+
     context = {'courses_complete': courses_complete, 'programme_credits': programme_credits}
     return render(request, 'accounts/graduation.html', context)
     # pass
@@ -93,6 +126,38 @@ def complete_courses(request):
     try:
         student = get_object_or_404(Student,user = request.user)
         courses_complete = student.usercourses.all().filter(course_grade__gte=50)
+        courses = student.usercourses.all().filter(course_grade__gte=50).values('course_code')
+        """arr = []
+        for i in courses_complete:
+            for j in Course.objects.all():
+                if i.course_code == j:
+                    arr.append(j)
+        total_credits = 0
+        for i in arr:
+            total_credits+=i.credits
+
+        print(student)
+        print(total_credits)
+
+        programme_ = student.programme
+        coursesInMyProgramme = Course.objects.filter(programme__plan_code=programme_.plan_code)
+
+        f = set()
+
+        for i in coursesInMyProgramme:
+            f.add(i)
+        for i in courses_complete:
+            f.add(i)
+
+        # len on f should be equal to the len of courses_complete to graduate
+        if len(f) < len(courses_complete) and total_credits > 120:
+            print("graduate!")
+        else:
+            print("no")
+"""
+        """for i in courses:
+            credits =+ i.credits
+        print(credits)"""
         # courses_incomplete = student.usercourses.all().filter(course_grade__lt=50)
     except Exception:
         messages.error('no course complete')
@@ -124,3 +189,23 @@ def incomplete_courses(request):
 def generate_semester_pdf(request):
     # return render(request, 'accounts/semester.html') 
     pass
+
+
+def semester(request):
+
+    student = get_object_or_404(Student, user=request.user)
+    courses_complete = student.usercourses.all().filter(course_grade__gte=50)
+    arr = []
+    for i in courses_complete:
+        for j in Course.objects.all():
+            if i.course_code == j:
+                arr.append(j)
+    total_credits = 0
+    for i in arr:
+        total_credits += i.credits
+    programme_ = student.programme
+    how_many_semester_left = int(programme_.overall_program_credits)/15
+    how_many_semester_left = math.floor(how_many_semester_left)
+    context = {'semester_left':how_many_semester_left,'programme':programme_}
+    return render()
+

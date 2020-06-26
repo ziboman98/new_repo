@@ -68,6 +68,7 @@ class Student(models.Model):
 #         return self.semester_type
 
 # Program Semester model
+
 class ProgramSemester(models.Model):
     plan_code = models.ForeignKey(Programme, on_delete=models.CASCADE, related_name='progSem_planCode')
     overall_semester = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(10)])
@@ -101,7 +102,7 @@ class Course(models.Model):
     semester_type = models.CharField(max_length=100, default='1', choices=SEMESTER)
     level = models.PositiveIntegerField(default=3, validators=[MinValueValidator(1), MaxValueValidator(4)])
     overall_semester = models.ForeignKey(ProgramSemester, on_delete=models.CASCADE, related_name='course_overallSem')
-
+    programme = models.ManyToManyField(Programme)
     class Meta:
         ordering = ['course_code']
 
@@ -109,11 +110,10 @@ class Course(models.Model):
         return self.course_code
 
 
-
 # StudentCourse model
 class StudentCourse(models.Model):
     student_id = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="usercourses")
-    course_code = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course_code = models.ForeignKey(Course, on_delete=models.CASCADE,related_name="mycourse")
     course_grade = models.PositiveIntegerField(default=50)
     GPA = models.FloatField(default=2.00, validators=[MinValueValidator(0.0), MaxValueValidator(5.0)], blank=True)
     # semester_type = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='StudentCourse_semesterType')

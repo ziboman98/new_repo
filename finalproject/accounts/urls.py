@@ -9,7 +9,7 @@ urlpatterns = [
     path('graduation/', views.graduation, name="graduation"),
     path('incomplete/', views.incomplete_courses, name="incompleteSemesters"),
     path('complete/', views.complete_courses, name="completeSemesters"),
-    path('semester/', views.generate_semester_pdf, name="semester"),
+    path('semester/', views.semester, name="semester"),
     path('incomplete/', views.incomplete_courses, name="incompleteSemesters"),
 
 ]
