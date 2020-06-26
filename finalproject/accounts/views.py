@@ -73,50 +73,54 @@ def logoutUser(request):
 # converting HTML to pdf
 # @login_required(login_url='login')
 # @allowed_users(allowed_roles=['student', 'admin'])
-def generate_graduation_pdf(request):
-    # return render(request, 'accounts/graduation.html')
-    pass
+def graduation(request):
+    """This method checks whether the student fulfills all the requirements for graduation"""
+    student = get_object_or_404(Student, user=request.user)
+    courses_complete = student.usercourses.all().filter(course_grade__gte=50)
+    programme_credits = student.programme.overall_program_credits
+    # student_cgpa = student.StudentCGPA.CGPA , 'student_cgpa': student_cgpa
+    
+    context = {'courses_complete': courses_complete, 'programme_credits': programme_credits}
+    return render(request, 'accounts/graduation.html', context)
+    # pass
+
+
+# @login_required(login_url='login')
+def complete_courses(request):
+    """This method displays the courses which a student has gotten a grade of
+        50 or more.
+    """
+    try:
+        student = get_object_or_404(Student,user = request.user)
+        courses_complete = student.usercourses.all().filter(course_grade__gte=50)
+        # courses_incomplete = student.usercourses.all().filter(course_grade__lt=50)
+    except Exception:
+        messages.error('no course complete')
+    context = {'courses_complete': courses_complete}
+    return render(request, "accounts/complete.html", context)
+
+
+
+
 
 # converting HTML to pdf
 # @login_required(login_url='login')
 # @allowed_users(allowed_roles=['student', 'admin'])
-def generate_incomplete_pdf(request):
-    # return render(request, 'accounts/incomplete.html')
-    pass
+def incomplete_courses(request):
+    # student = get_object_or_404(Student,user = request.user)
+    # programme = 
+    # student_programme = student.programme.all()
+    # programme_courses =  
+    # courses_complete = student.usercourses.all().filter(course_grade__null=True)
+    # print (student_programm)
+    # print("hg")
+    #return render(request, "accounts/incomplete.html", {'student':student_programm, 'courses_incomplete':courses_incomplete})
 
-# converting HTML to pdf
-# @login_required(login_url='login')
-# @allowed_users(allowed_roles=['student', 'admin'])
-def generate_complete_pdf(request):
-    # return render(request, 'accounts/complete.html', context)
     pass
 
 # converting HTML to pdf
 # @login_required(login_url='login')
 # @allowed_users(allowed_roles=['student', 'admin'])
 def generate_semester_pdf(request):
-    # return render(request, 'accounts/semester.html')
+    # return render(request, 'accounts/semester.html') 
     pass
-
-
-def complete_courses(request):
-    try:
-        student = get_object_or_404(Student,user = request.user)
-        courses_complete = student.usercourses.all().filter(course_grade__gte=50)
-        courses_incomplete = student.usercourses.all().filter(course_grade__lt=50)
-    except Exception:
-        messages.error('no course complete')
-    context = {'courses_complete': courses_complete,'courses_incomplete':courses_incomplete}
-    return render(request, "accounts/complete.html", context)
-
-
-def incomplete_courses(request):
-    student = get_object_or_404(Student,user = request.user)
-    student_programm = student.programme.all()
-    #allcourses =
-    courses_complete = student.usercourses.all().filter(course_grade__gte=50)
-    print (student_programm)
-    print("hg")
-
-    #return render(request, "accounts/incomplete.html", {'student':student_programm})
-

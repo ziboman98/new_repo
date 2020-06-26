@@ -1,7 +1,17 @@
 {% extends "accounts/main.html" %}
 {% block content %}
-    <h1>Incomplete Semesters</h1>
+    <h1>Incomplete Courses</h1>
 
+    <div class="course_incomplete">
+
+        <h5>failed courses</h5>
+        {% for course in courses_incomplete %}
+            <ul>
+                <li>{{course.course_code}}</li>
+            </ul>
+        {% endfor %}
+
+    </div>
 
 
 {% endblock  %}

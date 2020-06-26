@@ -110,9 +110,6 @@ class Course(models.Model):
 
 
 
-    
-
-
 # StudentCourse model
 class StudentCourse(models.Model):
     student_id = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="usercourses")
