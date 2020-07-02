@@ -1,14 +1,29 @@
 {% extends "accounts/main.html" %}
+
 {% block content %}
-    <h1>Completed courses for {{user.username}}</h1>
+    <h3>List of completed courses for {{user.username}}</h3>
 
 
 <div class="course_complete">
-    {% for course in courses_complete %}
-        <ul>
-            <li>{{course.course_code}} {{course.course_grade}}</li>
-        </ul>
-    {% endfor %}
+
+        <table>
+            <tr>
+                <th>Course code</th>
+<!--                <th>Course name</th>-->
+                <th>Course mark</th>
+            </tr>
+            {% for course in courses_complete %}
+                <tr>
+                    <td>{{course.course_code}}</td>
+<!--                    <td>{{course.course_name}}</td>-->
+                    <td>{{course.course_grade}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+<!--        <ul>-->
+<!--            <li>{{course.course_code}} {{course.course_grade}}</li>-->
+<!--        </ul>-->
+
 </div>
 
 

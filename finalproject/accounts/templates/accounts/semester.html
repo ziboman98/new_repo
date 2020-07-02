@@ -1,5 +1,9 @@
 {% extends "accounts/main.html" %}
 {% block content %}
-    <h1>Semesters</h1>
+    <h5>How many semesters is {{user.username}} left with till completion of the programme?</h5>
+    {% if whatsleft <= 0%}
+        <p>You are left with 0 semeseters</p>
+    {%endif%}
 
+    <p>You have done {{semester_left}} </p>
 {% endblock  %}

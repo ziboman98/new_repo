@@ -5,14 +5,11 @@
         <h4>Is {{user.username}} eligible for graduation?</h4>
 <!--        <p>{{student.studentCGPA}}</p>-->
 
-        {% for course in courses_complete %}
-            count +={{course.credits}}
-            {% if count >= 120  %}
-                <p>CONGRATULATIONS! You qualify to graduate.</p>
-            {% else %}
-                <p>SORRY! You do not qualify to graduate.</p>
-            {% endif %}
-        {% endfor %}
+        {% if message  %}
+            <p>You graduate</p>
+        {% else %}
+            <p> You do not qualifty.</p>
+        {%endif%}
     </div>
 
 
