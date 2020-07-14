@@ -122,26 +122,25 @@ class StudentCourse(models.Model):
 
     class Meta:
         ordering = ['student_id']
-
     def __str__(self):
         return '%s %s' % (self.student_id, self.course_code)
 
 
 # StudentCGPA
-class StudentCGPA(models.Model):
-    student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
-    CGPA = models.FloatField(default=2.00, validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
-
-    class Meta:
-        ordering = ['student_id']
-
-    def __str__(self):
-        return '%s %s' %  (self.student_id, self.CGPA)
-
-# # PlanCourse model
-# class PlanCourse(models.Model):
-#     overall_semester = models.ForeignKey(Semester, on_delete=models.CASCADE, related_name='PlanCourse_overall_semester')
-#     course_code = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='PlanCourse_course_code')
+# class StudentCGPA(models.Model):
+#     student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
+#     CGPA = models.FloatField(default=2.00, validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
+#
+#     class Meta:
+#         ordering = ['student_id']
+#
 #     def __str__(self):
-#         return self.overall_semester
+#         return '%s %s' %  (self.student_id, self.CGPA)
+
+# ProgramCourse model
+class ProgramCourse(models.Model):
+    plan_code = models.ForeignKey(Programme, on_delete=models.CASCADE, related_name='progCourse_planCode')
+    course_code = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='PlanCourse_course_code')
+    def __str__(self):
+        return self.overall_semester
 

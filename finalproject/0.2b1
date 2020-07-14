@@ -1,0 +1,9 @@
+Processing c:\users\matiw\appdata\local\pip\cache\wheels\9b\7c\cf\df1bf941fe8667f7544983234e4a7b0c63a49a59b50747b6bd\xhtml2pdf-0.2.4-py3-none-any.whl
+Requirement already satisfied: six in c:\users\matiw\miniconda3\envs\project_env\lib\site-packages (from xhtml2pdf) (1.15.0)
+Requirement already satisfied: pyPdf2 in c:\users\matiw\miniconda3\envs\project_env\lib\site-packages (from xhtml2pdf) (1.26.0)
+Requirement already satisfied: reportlab>=3.0 in c:\users\matiw\miniconda3\envs\project_env\lib\site-packages (from xhtml2pdf) (3.5.44)
+Requirement already satisfied: Pillow in c:\users\matiw\miniconda3\envs\project_env\lib\site-packages (from xhtml2pdf) (7.1.2)
+Requirement already satisfied: html5lib>=1.0 in c:\users\matiw\miniconda3\envs\project_env\lib\site-packages (from xhtml2pdf) (1.0.1)
+Requirement already satisfied: webencodings in c:\users\matiw\miniconda3\envs\project_env\lib\site-packages (from html5lib>=1.0->xhtml2pdf) (0.5.1)
+Installing collected packages: xhtml2pdf
+Successfully installed xhtml2pdf-0.2.4

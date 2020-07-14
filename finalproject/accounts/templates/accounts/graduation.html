@@ -2,13 +2,30 @@
 {% block content %}
 
     <div class="graduation">
-        <h4>Is {{user.username}} eligible for graduation?</h4>
+        <h3>Is {{user.username}} doing {{user.student.programme}} programme eligible for graduation?</h3>
 <!--        <p>{{student.studentCGPA}}</p>-->
 
         {% if message  %}
-            <p>You graduate</p>
+            <div class="card text-center">
+                <div class="card bg-light mb-3" >
+                  <div class="card-body">
+                    <h5 class="card-title">Congratulations {{user.username}}</h5>
+                    <p class="card-text">You have fulfilled all the requirements to qualify to graduate.
+                        Below are the links which lead to the graduation application form, please visit them and fill
+                        out the forms.</p>
+                    <a href="#" class="card-link">Apply for Graduation</a>
+                  </div>
+                </div>
+            </div>
         {% else %}
-            <p> You do not qualifty.</p>
+             <div class="card text-center">
+                <div class="card bg-light mb-3" >
+                  <div class="card-body">
+                    <p class="card-text">Unfortunately you have not fulfilled all the requirements to qualify to graduate.
+                        </p>
+                  </div>
+                </div>
+            </div>
         {%endif%}
     </div>
 

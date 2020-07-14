@@ -9,6 +9,6 @@ admin.site.register(Student)
 admin.site.register(Course)
 admin.site.register(ProgramSemester)
 admin.site.register(StudentCourse)
-admin.site.register(StudentCGPA)
+admin.site.register(ProgramCourse)
 
 # admin.site.register()

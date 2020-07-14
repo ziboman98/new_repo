@@ -4,6 +4,13 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .models import *
+from django.contrib.auth import views as auth_views
+from django.views.generic import View
+from .utils import render_to_pdf
+from django.template.loader import get_template
+# from easy_pdf.views import PDFTemplateView
+from django.views.generic import TemplateView
+
 
 from .forms import CreateUserForm
 from django.contrib.auth.decorators import login_required
@@ -18,20 +25,23 @@ import tempfile
 # Create your views here.
 
 # Home view
-# @login_required(login_url='login')
+@login_required(login_url='login')
 # @allowed_users(allowed_roles=['student', 'admin'])
 def home(request):
 	context = {}
 	return render(request, 'accounts/dashboard.html', context)
 
+@login_required(login_url='login')
+def landingPage(request):
+    context = {}
+    return render(request, 'accounts/index.html', context)
 # registerPage
 # @unauthenticated_user
 # @allowed_users(allowed_roles=['admin'])
 # @admin_only
-
 @unauthenticated_user
 def registerPage(request):
-
+    """This is the function that allows users to be registered into the system by the admin"""
     form = CreateUserForm()
 
     if request.method == 'POST':
@@ -50,6 +60,7 @@ def registerPage(request):
 # Login View
 @unauthenticated_user
 def loginPage(request):
+    """This is the function that allows users to be logged in"""
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -58,7 +69,7 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('index')
         else:
             messages.info(request,'Username or Password is incorrect')
 
@@ -67,15 +78,16 @@ def loginPage(request):
 
 # Logging out users
 def logoutUser(request):
+    """This is the function that allows users to be logged out"""
     logout(request)
     return redirect('login')
 
 
-# converting HTML to pdf
+
 # @login_required(login_url='login')
 # @allowed_users(allowed_roles=['student', 'admin'])
 def graduation(request):
-    """This method checks whether the student fulfills all the requirements for graduation"""
+    """This function checks whether the student fulfills all the requirements for graduation"""
     student = get_object_or_404(Student, user=request.user)
     courses_complete = student.usercourses.all().filter(course_grade__gte=50)
     programme_credits = 120
@@ -97,9 +109,7 @@ def graduation(request):
     for i in courses_complete:
         f.add(i)
 
-    # len on f should be equal to the len of courses_complete to graduate
-    # print(programme_)
-    # print(coursesInMyProgramme)
+    # len on f should be equal or greater than the len of courses_complete to graduate
     message = False
     if len(f) >= len(courses_complete) and total_credits > 120:
         message = True
@@ -107,14 +117,13 @@ def graduation(request):
         pass
 
     # get all the courses programme requires
-
     context = {'message': message, 'programme_credits': programme_credits}
     return render(request, 'accounts/graduation.html', context)
 
 
 # @login_required(login_url='login')
 def complete_courses(request):
-    """This method displays the courses which a student has gotten a grade of
+    """This function displays the courses which a student has gotten a grade of
         50 or more.
     """
     try:
@@ -132,7 +141,7 @@ def complete_courses(request):
 # @login_required(login_url='login')
 # @allowed_users(allowed_roles=['student', 'admin'])
 def incomplete_courses(request):
-    """This method displays the courses which a student has not passed wit grade of
+    """This function displays the courses which a student has not passed wit grade of
            50 and above or has never taken.
        """
     try:
@@ -157,11 +166,8 @@ def incomplete_courses(request):
 # converting HTML to pdf
 # @login_required(login_url='login')
 # @allowed_users(allowed_roles=['student', 'admin'])
-
-
-
 def semester(request):
-    """This functions determines the amount of semesters left for a user"""
+    """This function determines the amount of semesters left for a user"""
     student = get_object_or_404(Student, user=request.user)
     courses_complete = student.usercourses.all().filter(course_grade__gte=50)
     arr = []
@@ -172,13 +178,44 @@ def semester(request):
     total_credits = 0
     for i in arr:
         total_credits += i.credits
+    print(total_credits)
+    sem_done = math.floor(total_credits/15)
     programme_ = student.programme
-    whatsleft = (120 - int(programme_.overall_program_credits))/15
+    whatsleft = 8 - sem_done
+    if whatsleft < 0 :
+        whatsleft = 0
     whatsleft = math.floor(whatsleft)
     semestersDone = int(programme_.overall_program_credits)/15
     how_many_semester_left = math.floor(semestersDone)
-    context = {'semester_left':how_many_semester_left, 'whatsleft':whatsleft}
+    context = {'semester_left':how_many_semester_left, 'whatsleft':whatsleft,'sem_done': sem_done, 'total':total_credits}
     return render(request, "accounts/semester.html", context)
+
+
+# class HelloPDFView(PDFTemplateView):
+#     template_name = 'semester.html'
+
+
+# class GeneratePDF(View):
+#     def get(self, request, *args, **kwargs):
+#         template = get_template('semester.html')
+#         context = {
+#             "sem_done": 2,
+#             "whatsleft": 6,
+#         }
+#         html = template.render(context)
+#         return HttpResponse(html)
+
+
+
+
+
+
+
+
+
+
+
+
 
 #  """arr = []
 #         for i in courses_complete:
