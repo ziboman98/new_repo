@@ -1,6 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
+from accounts import views as web_views
 
 from wkhtmltopdf.views import PDFTemplateView
 
@@ -17,7 +18,41 @@ urlpatterns = [
     #                                        filename='my_pdf.pdf'), name='semester'),
     path('semester/', views.semester, name="semester"),
     # path('incomplete/', views.incomplete_courses, name="incompleteSemesters"),
+    path(
+        "pdf/",
+        web_views.print_pdf,
+        name="pdf",
+    ),
 
+path(
+        "semester_pdf/",
+        web_views.semester_pdf,
+        name="semester_pdf",
+    ),
+
+    path(
+            "grad_pdf/",
+            web_views.grad_pdf,
+            name="grad_pdf",
+        ),
+
+    path(
+            "incomplete_pdf/",
+            web_views.incomplete_pdf,
+            name="incomplete_pdf",
+        ),
+
+    path(
+            "complete_pdf/",
+            web_views.complete_pdf,
+            name="complete_pdf",
+        ),
+
+    path(
+            "completed_pdf/",
+            web_views.completed_pdf,
+            name="completed_pdf",
+        ),
 
     # path to reset email form
     path('reset_password/',

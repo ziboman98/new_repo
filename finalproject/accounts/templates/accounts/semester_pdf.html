@@ -1,0 +1,18 @@
+{% load static %}
+
+<h5>How many semesters is {{user.username}} left with till completion of the {{user.student.programme}} programme?</h5>
+ <div class="card text-center">
+                <div class="card bg-light mb-3" >
+                  <div class="card-body">
+                    <p class="card-text">
+                        {% if total >= 120 %}
+                            Congratulations you have completed all the semesters in the {{user.student.programme}}
+                        programme.
+                        {% elif sem_done <= 8 %}
+                            You have done {{sem_done}}semesters.
+                        {%endif%}
+                    </p>
+                      <p>You are left with {{whatsleft}} semesters.</p>
+                  </div>
+                </div>
+            </div>

@@ -1,0 +1,375 @@
+{% load static %}
+
+<!--<H1 align="center">Example</H1>-->
+<!--<h2>Basic usage</h2>-->
+<!--<p>You can now easily print text mixing different-->
+<!--    styles : <B>bold</B>, <I>italic</I>, <U>underlined</U>, or-->
+<!--    <B><I><U>all at once</U></I></B>!<BR>You can also insert links-->
+<!--    on text, such as <A HREF="http://www.fpdf.org">www.fpdf.org</A>,-->
+<!--    or on an image: click on the logo.<br>-->
+<!--    <h3>Sample List</h3>-->
+<!--    <ul>-->
+<!--        <li>option 1</li>-->
+<!--        <ol>-->
+<!--            <li>option 2</li>-->
+<!--        </ol>-->
+<!--        <li>option 3</li>-->
+<!--    </ul>-->
+
+<!--    <table border="0" align="center" width="50%">-->
+<!--        <thead>-->
+<!--            <tr>-->
+<!--                <th width="30%">Header 1</th>-->
+<!--                <th width="70%">header 2</th>-->
+<!--            </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--            <tr>-->
+<!--                <td>cell 1</td>-->
+<!--                <td>cell 2</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>cell 2</td>-->
+<!--                <td>cell 3</td>-->
+<!--            </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</p>-->
+
+{% block content %}
+
+    <div class="course_incomplete">
+
+<!--      <table>-->
+<!--            <tr>-->
+<!--                <th width="30%">Course code</th>-->
+<!--            </tr>-->
+<!--            {% for course in courses_incomplete %}-->
+<!--                <tr>-->
+<!--                    <td>{{course.course_code}}</td>-->
+<!--                </tr>-->
+<!--            {% endfor %}-->
+<!--        </table>-->
+<!--        <table border="0" align="center" width="50%">&ndash;&gt;-->
+<!--        <thead>-->
+<!--            <tr>-->
+<!--                <th width="70%">Course code</th>-->
+<!--            </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--            {% for course in courses_incomplete %}-->
+<!--                <tr>-->
+<!--                    <td>{{course.course_code}}</td>-->
+<!--                </tr>-->
+<!--            {% endfor %}-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--    </div>-->
+
+<h1>University of Botswana</h1>
+        <h2>Incomplete courses</h2>
+    <h3>Computing with Finance 2</h3>
+          <table border="0" align="center" width="50%">
+            <thead>
+                <tr>
+                    <th width="50%">Course code</th>
+                    <th width="80%">Course title</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>MAT122</td>
+                    <td>Introductory Mathematics II</td>
+
+                </tr>
+                <tr>
+                    <td>ACC100</td>
+                    <td>Introduction To Accounting</td>
+
+                </tr>
+
+                <tr>
+                    <td>COM142</td>
+                    <td>Academic & Professional Commn</td>
+
+                </tr>
+                <tr>
+                    <td>CSI132</td>
+                    <td>Discrete Structures II</td>
+
+                </tr>
+                <tr>
+                    <td>CSI142</td>
+                    <td>Object-Oriented Programming</td>
+
+                </tr>
+            </tbody>
+         </table>
+
+        <h3>Computing with Finance 3</h3>
+
+    <table border="0" align="center" width="50%">
+            <thead>
+                <tr>
+                    <th width="50%">Course code</th>
+                    <th width="80%">Course title</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ECO111 </td>
+                    <td>Basic Microeconomics</td>
+
+                </tr>
+                <tr>
+                    <td>FIN200 </td>
+                    <td>Business Finance</td>
+
+                </tr>
+
+                <tr>
+                    <td>LAW251 </td>
+                    <td>Foundations Of Business Law</td>
+
+                </tr>
+                <tr>
+                    <td>MAT221  </td>
+                    <td>Calculus I</td>
+
+                </tr>
+                <tr>
+                    <td>MGT202 </td>
+                    <td>Small Business Management</td>
+
+                </tr>
+            <tr>
+                    <td>CSI247 </td>
+                    <td>Data Structures </td>
+
+                </tr>
+            </tbody>
+         </table>
+
+        <h3>Computing with Finance 4</h3>
+
+      <table border="0" align="center" width="50%">
+            <thead>
+                <tr>
+                    <th width="50%">Course code</th>
+                    <th width="80%">Course title</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ACC206 </td>
+                    <td>Fin. Acc. For Manuf. & Alternative Entities</td>
+
+                </tr>
+                <tr>
+                    <td>ELECTI</td>
+                    <td>Elective</td>
+
+                </tr>
+
+                <tr>
+                    <td>ECO112 </td>
+                    <td>Basic Macro Economics</td>
+
+                </tr>
+                <tr>
+                    <td>CSI251</td>
+                    <td>Computer Architecture And Organisation</td>
+
+                </tr>
+                <tr>
+                    <td>CSI262</td>
+                    <td> Database Concepts</td>
+
+                </tr>
+            <tr>
+                    <td>STA114 </td>
+                    <td> Business Statistics</td>
+
+                </tr>
+            </tbody>
+         </table>
+
+        <h3>Computing with Finance 5</h3>
+
+        <table border="0" align="center" width="50%">
+            <thead>
+                <tr>
+                    <th width="50%">Course code</th>
+                    <th width="80%">Course title</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ACC309 </td>
+                    <td>Principles Of Auditing</td>
+
+                </tr>
+                <tr>
+                    <td>CSI342  </td>
+                    <td>Systems Analysis And Design</td>
+
+                </tr>
+
+                <tr>
+                    <td>CSI354 </td>
+                    <td>Operating Systems</td>
+
+                </tr>
+                <tr>
+                    <td>CSI374 </td>
+                    <td>Computer Networks</td>
+
+                </tr>
+                <tr>
+                    <td>FIN301  </td>
+                    <td>Financial Institutions & Markets I</td>
+
+                </tr>
+            </tbody>
+         </table>
+
+        <h3>Computing with Finance 6</h3>
+          <table border="0" align="center" width="50%">
+            <thead>
+                <tr>
+                    <th width="50%">Course code</th>
+                    <th width="80%">Course title</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CSI315 </td>
+                    <td>Web Technology And Applications</td>
+
+                </tr>
+                <tr>
+                    <td>CSI341 </td>
+                    <td>Introduction To Software Engineering</td>
+
+                </tr>
+
+                <tr>
+                    <td>CSI392 </td>
+                    <td>Human Computer Interaction</td>
+
+                </tr>
+                <tr>
+                    <td>FIN302</td>
+                    <td>Financial Planning & Forecasting</td>
+
+                </tr>
+                <tr>
+                    <td>FIN300 </td>
+                    <td>Financial Management</td>
+
+                </tr>
+                  <tr>
+                    <td>MGT303 </td>
+                    <td>Entrepreneurship and New Business Formation</td>
+
+                </tr>
+                <tr>
+                    <td>CSI352 </td>
+                    <td>Industrial Attachment</td>
+
+                </tr>
+            </tbody>
+         </table>
+
+        <h3>Computing with Finance 7</h3>
+         <table border="0" align="center" width="50%">
+            <thead>
+                <tr>
+                    <th width="50%">Course code</th>
+                    <th width="80%">Course title</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CSI481 </td>
+                    <td>Database Systems</td>
+
+                </tr>
+                <tr>
+                    <td>CSI475 </td>
+                    <td>Social Informatics</td>
+
+                </tr>
+
+                <tr>
+                    <td>CSI161</td>
+                    <td>Introduction To Computing</td>
+
+                </tr>
+                <tr>
+                    <td>CSI473 </td>
+                    <td>Software Design</td>
+
+                </tr>
+                <tr>
+                    <td>CSI443 </td>
+                    <td>Requirements Engineering</td>
+                </tr>
+                 <tr>
+                    <td>CSI323 </td>
+                    <td>Algorithms</td>
+                </tr>
+             <tr>
+                    <td>FIN402 </td>
+                    <td>International Business Finance</td>
+                </tr>
+            </tbody>
+         </table>
+
+        <h3>Computing with Finance 8</h3>
+         <table border="0" align="center" width="50%">
+            <thead>
+                <tr>
+                    <th width="50%">Course code</th>
+                    <th width="80%">Course title</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CSI420</td>
+                    <td>Web Computing</td>
+
+                </tr>
+                <tr>
+                    <td>CSI408</td>
+                    <td>Project</td>
+
+                </tr>
+
+                <tr>
+                    <td>FIN403</td>
+                    <td>Financial Institution and Markets II</td>
+
+                </tr>
+                <tr>
+                    <td>MAT111</td>
+                    <td>Introductory Mathematics I</td>
+
+                </tr>
+                <tr>
+                    <td>FIN404</td>
+                    <td>Investment Analysis and Portfolio Management</td>
+
+                </tr>
+            </tbody>
+         </table>
+
+
+{% endblock  %}

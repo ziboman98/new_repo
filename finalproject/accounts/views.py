@@ -4,13 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .models import *
-from django.contrib.auth import views as auth_views
-from django.views.generic import View
-from .utils import render_to_pdf
-from django.template.loader import get_template
-# from easy_pdf.views import PDFTemplateView
-from django.views.generic import TemplateView
 
+from fpdf import FPDF, HTMLMixin
 
 from .forms import CreateUserForm
 from django.contrib.auth.decorators import login_required
@@ -194,6 +189,68 @@ def semester(request):
 # class HelloPDFView(PDFTemplateView):
 #     template_name = 'semester.html'
 
+class HtmlPdf(FPDF,  HTMLMixin):
+    pass
+
+def print_pdf(request):
+    pdf = HtmlPdf()
+    pdf.add_page()
+    pdf.write_html(render_to_string('accounts/pdf.html'))
+
+    response = HttpResponse(pdf.output(dest='S').encode('latin-1'))
+    response['Content-Type'] = 'application/pdf'
+
+    return response
+
+def grad_pdf(request):
+    pdf = HtmlPdf()
+    pdf.add_page()
+    pdf.write_html(render_to_string('accounts/grad_pdf.html'))
+
+    response = HttpResponse(pdf.output(dest='S').encode('latin-1'))
+    response['Content-Type'] = 'application/pdf'
+
+    return response
+
+def completed_pdf(request):
+    pdf = HtmlPdf()
+    pdf.add_page()
+    pdf.write_html(render_to_string('accounts/completed_pdf.html'))
+
+    response = HttpResponse(pdf.output(dest='S').encode('latin-1'))
+    response['Content-Type'] = 'application/pdf'
+
+    return response
+
+def semester_pdf(request):
+    pdf = HtmlPdf()
+    pdf.add_page()
+    pdf.write_html(render_to_string('accounts/semester_pdf.html'))
+
+    response = HttpResponse(pdf.output(dest='S').encode('latin-1'))
+    response['Content-Type'] = 'application/pdf'
+
+    return response
+
+def incomplete_pdf(request):
+    pdf = HtmlPdf()
+    pdf.add_page()
+    pdf.write_html(render_to_string('accounts/incomplete_pdf.html'))
+
+    response = HttpResponse(pdf.output(dest='S').encode('latin-1'))
+    response['Content-Type'] = 'application/pdf'
+
+    return response
+
+def complete_pdf(request):
+    pdf = HtmlPdf()
+    pdf.add_page()
+    pdf.write_html(render_to_string('accounts/complete_pdf.html'))
+
+    response = HttpResponse(pdf.output(dest='S').encode('latin-1'))
+    response['Content-Type'] = 'application/pdf'
+
+    return response
 
 # class GeneratePDF(View):
 #     def get(self, request, *args, **kwargs):

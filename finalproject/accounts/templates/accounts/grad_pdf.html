@@ -1,8 +1,14 @@
-{% extends "accounts/main.html" %}
-{% block content %}
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
 
-    <div class="graduation">
-        <h3>Is {{user.username}} doing {{user.student.programme}} programme eligible for graduation?</h3>
+</head>
+<body>
+
+<h1 style="text-align:center">University of Botswana</h1>
+<div class="graduation">
+        <h3>Graduation eligibility evaluation outcome</h3>
 <!--        <p>{{student.studentCGPA}}</p>-->
 
         {% if message  %}
@@ -28,10 +34,5 @@
             </div>
         {%endif%}
     </div>
-
-<p><a href="{% url 'grad_pdf' %}" class="btn btn-primary" >Get PDF</a></p>
-{% endblock  %}
-
-
-
-
+</body>
+</html>
